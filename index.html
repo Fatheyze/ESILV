@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mémo BIC A1 2026-2027</title>
+<meta name="description" content="Récapitulatif de l'année de 1re année du Bachelor Informatique & Cybersécurité (ESILV Paris, promo 2029) : calendrier, stage, recherche de stage, mobilité, règles, finances et contacts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Familjen+Grotesk:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  /* Mise en page : un agenda d'année. Bandeau d'en-tête (prochaine date + compte à rebours
+     du stage), sommaire collant, puis sections en une colonne de ≈ 960 px.
+     Chaque catégorie de date a sa couleur, reprise partout (frise, pastilles, checklist). */
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --sunk: #eceff4;
+    --line: #dce1e9;
+    --ink: #161d2e;
+    --muted: #5a6477;
+    --accent: #23408e;
+    --accent-ink: #ffffff;
+    --hl: #ffb238;
+    --hl-ink: #3b2400;
+    --ok: #1b7f4b;
+    --bad: #b42318;
+
+    --c-stage: #23408e;
+    --c-projet: #0d7368;
+    --c-anglais: #6d3fc0;
+    --c-finances: #a65a06;
+    --c-carriere: #b3195a;
+    --c-admin: #4b5568;
+
+    --f-display: "Familjen Grotesk", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --r: 12px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f131c; --surface: #171d29; --sunk: #1f2635; --line: #2c3547;
+      --ink: #e6eaf2; --muted: #9aa5b8; --accent: #8fa9ff; --accent-ink: #0d1530;
+      --hl: #ffb238; --hl-ink: #2a1900; --ok: #5fd39a; --bad: #ff8a7a;
+      --c-stage: #8fa9ff; --c-projet: #4fd1c1; --c-anglais: #b79cff;
+      --c-finances: #f2a54a; --c-carriere: #ff7fb0; --c-admin: #a7b1c4;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f131c; --surface: #171d29; --sunk: #1f2635; --line: #2c3547;
+    --ink: #e6eaf2; --muted: #9aa5b8; --accent: #8fa9ff; --accent-ink: #0d1530;
+    --hl: #ffb238; --hl-ink: #2a1900; --ok: #5fd39a; --bad: #ff8a7a;
+    --c-stage: #8fa9ff; --c-projet: #4fd1c1; --c-anglais: #b79cff;
+    --c-finances: #f2a54a; --c-carriere: #ff7fb0; --c-admin: #a7b1c4;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+
+  .wrap {
+    max-width: 980px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  /* ---- En-tête ---- */
+  .masthead { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .masthead .wrap { padding-block: 36px 28px; display: grid; gap: 24px; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
+  .kicker { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+  h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.02; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+  .lede { margin: 14px 0 0; color: var(--muted); max-width: 58ch; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 16px 0 0; padding: 0; list-style: none; font-size: 14px; }
+  .facts b { font-family: var(--f-display); font-size: 1.15rem; margin-right: 4px; }
+
+  .next {
+    background: var(--hl); color: var(--hl-ink); border-radius: var(--r); padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .next small { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .next strong { font-family: var(--f-display); font-size: 1.35rem; line-height: 1.15; }
+  .next span { font-size: 14px; }
+  .side { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .side-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .side-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .side-link { font-size: 13px; align-self: flex-start; }
+  .upcoming, .remind { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+  .upcoming li { display: grid; grid-template-columns: 74px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
+  .upcoming .d { font-family: var(--f-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .upcoming .t { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+  .upcoming .t i { width: 8px; height: 8px; border-radius: 50%; flex: none; transform: translateY(-1px); }
+  .upcoming .r { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .remind li { padding-left: 14px; position: relative; }
+  .remind li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 1px; background: var(--hl); }
+  .reminders { margin-top: 22px; border-left: 4px solid var(--hl); }
+  .reminders .remind { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 22px; }
+  @media (max-width: 560px) { .reminders .remind { grid-template-columns: 1fr; } }
+  .side-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .countdown { display: flex; flex-direction: column; gap: 4px; padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); text-decoration: none; color: inherit; min-width: 0; }
+  .countdown b { font-family: var(--f-display); font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; color: var(--c-stage); }
+  .countdown span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+  .ects-mini b { color: var(--ok); }
+  .ects-mini:hover { border-color: var(--accent); }
+
+  /* ---- Sommaire collant ---- */
+  nav.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+  nav.toc .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: thin; }
+  nav.toc a {
+    flex: none; text-decoration: none; color: var(--ink); font-size: 14px; padding: 5px 12px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+  }
+  nav.toc a:hover { border-color: var(--accent); }
+  nav.toc a.cta { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+  /* ---- Sections ---- */
+  main .wrap { display: flex; flex-direction: column; gap: 56px; padding-block: 40px 64px; }
+  section { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  h2 { font-family: var(--f-display); font-weight: 700; font-size: 1.75rem; line-height: 1.15; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+  h2 .num { font-family: var(--f-mono); font-size: 13px; color: var(--muted); font-weight: 500; display: block; letter-spacing: .06em; margin-bottom: 4px; }
+  h3 { font-family: var(--f-display); font-weight: 600; font-size: 1.15rem; margin: 0; }
+  p { margin: 0; }
+  .intro { color: var(--muted); max-width: 66ch; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .panel ul, .panel ol { margin: 0; padding-left: 1.2em; }
+  .panel li + li { margin-top: 4px; }
+  .note { font-size: 14px; color: var(--muted); }
+  .warn { border-left: 4px solid var(--hl); background: var(--surface); border-radius: 0 var(--r) var(--r) 0; padding: 12px 16px; font-size: 15px; }
+  .tag { display: inline-block; font-family: var(--f-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; }
+
+  /* UE : barre à l'échelle des 60 ECTS */
+  .ects-bar { display: flex; height: 38px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+  .ects-bar span { display: flex; align-items: center; justify-content: center; font-family: var(--f-mono); font-size: 12px; color: #fff; min-width: 0; overflow: hidden; white-space: nowrap; }
+  .ects-legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 6px 16px; margin: 0; padding: 0; list-style: none; font-size: 14px; }
+  .ects-legend li { display: flex; align-items: center; gap: 8px; }
+  .ects-legend i { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+  .ects-legend b { margin-left: auto; font-family: var(--f-mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+  /* Parcours sur 3 ans */
+  .years { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface); }
+  .years > div { padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .years > div + div { border-left: 1px solid var(--line); }
+  .years .now { background: var(--sunk); }
+  .years .y { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+
+  /* Frise */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+  .filters button {
+    border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px;
+    font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .filters button i { width: 9px; height: 9px; border-radius: 50%; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .month { font-family: var(--f-display); font-weight: 600; font-size: 1rem; padding: 18px 0 8px; color: var(--muted); text-transform: capitalize; }
+  .ev {
+    display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 14px; padding: 10px 0 10px 14px;
+    border-left: 3px solid var(--cat); position: relative;
+  }
+  .ev + .ev { border-top: 1px dashed var(--line); }
+  .ev .when { font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--muted); padding-top: 2px; }
+  .ev .what { display: flex; flex-direction: column; gap: 2px; }
+  .ev .what strong { font-weight: 700; }
+  .ev .what span { font-size: 14px; color: var(--muted); }
+  .ev .cat { color: var(--cat); margin-top: 4px; align-self: flex-start; }
+  .ev.past { opacity: .5; }
+  .ev.is-next { background: color-mix(in srgb, var(--hl) 22%, transparent); border-radius: 0 8px 8px 0; }
+  .ev.is-next .what strong::after { content: "  ← prochaine date"; font-family: var(--f-mono); font-size: 12px; font-weight: 500; color: var(--ink); }
+  .today-line { display: flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 12px; color: var(--hl-ink); margin: 6px 0; }
+  .today-line::before, .today-line::after { content: ""; height: 2px; background: var(--hl); flex: 1; }
+  .today-line b { background: var(--hl); padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+
+  /* Stage : chiffres clés */
+  .keys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .key { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; }
+  .key b { display: block; font-family: var(--f-display); font-size: 1.6rem; line-height: 1.1; color: var(--c-stage); }
+  .key span { font-size: 14px; color: var(--muted); }
+
+  /* Checklist */
+  .check { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .check label { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+  .check label:hover { background: var(--sunk); }
+  .check input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--ok); }
+  .check input:checked + span { text-decoration: line-through; color: var(--muted); }
+  .check small { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; padding-top: 3px; }
+  .progress { height: 8px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--ok); transition: width .3s; }
+  .progress-row { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+  .progress-row .progress { flex: 1; }
+
+  /* Tableaux */
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--f-display); font-weight: 600; }
+
+  /* Contacts */
+  .contacts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .contact { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .contact .who { font-weight: 700; }
+  .contact .role { font-size: 14px; color: var(--muted); }
+  .contact .for { font-size: 13px; }
+  .contact .mail { font-family: var(--f-mono); font-size: 13px; overflow-wrap: anywhere; margin-top: 6px; }
+  .contact .row { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 12px;
+    font-size: 14px; text-decoration: none; color: var(--ink);
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+  .btn.small { padding: 3px 10px; font-size: 13px; }
+
+  /* Composeur de mail */
+  .composer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+  .field > span { font-weight: 700; }
+  .field input, .field select, .field textarea {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 15px; width: 100%;
+  }
+  .field textarea { min-height: 220px; resize: vertical; line-height: 1.5; }
+  .recips { display: flex; flex-direction: column; gap: 2px; }
+  .recips label { display: flex; gap: 8px; align-items: flex-start; padding: 5px 6px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+  .recips label:hover { background: var(--sunk); }
+  .field .recips input { width: auto; flex: none; padding: 0; margin-top: 5px; accent-color: var(--accent); }
+  .recips em { font-style: normal; color: var(--muted); font-family: var(--f-mono); font-size: 12px; overflow-wrap: anywhere; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .status { font-size: 13px; color: var(--ok); min-height: 1.2em; }
+
+  /* Notes & ECTS */
+  .score { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 16px; align-items: stretch; }
+  .big { display: flex; align-items: baseline; gap: 8px; }
+  .big b { font-family: var(--f-display); font-size: 3rem; line-height: 1; font-variant-numeric: tabular-nums; color: var(--ok); }
+  .big span { font-family: var(--f-display); font-size: 1.4rem; color: var(--muted); }
+  .ects-track { display: flex; height: 16px; border-radius: 6px; overflow: hidden; background: var(--sunk); }
+  .ects-track span { display: block; height: 100%; transition: width .3s; }
+  .ects-track .t-ok { background: var(--ok); }
+  .ects-track .t-bad { background: var(--bad); }
+  .ects-track .t-wait { background: repeating-linear-gradient(135deg, var(--muted) 0 3px, transparent 3px 7px); opacity: .55; }
+  .score-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--muted); margin: 0; padding: 0; list-style: none; }
+  .score-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+  .sem-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 2px 10px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+  .pill.ok { color: var(--ok); }
+  .pill.bad { color: var(--bad); }
+  .pill.wait { color: var(--muted); }
+  .pill.comp { color: var(--c-finances); }
+  .ue-list { display: flex; flex-direction: column; gap: 12px; }
+  .ue { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--ue); border-radius: var(--r); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .ue-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+  .ue-head h3 { margin-right: auto; }
+  .ue-head .meta { font-family: var(--f-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .mods { width: 100%; min-width: 600px; font-size: 14px; }
+  .mods th { font-family: var(--f-body); font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; padding: 4px 6px; }
+  .mods td { padding: 4px 6px; vertical-align: middle; }
+  .mods input, .mods select { width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 5px 7px; font-size: 14px; }
+  .mods input.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .mods input.invalid { border-color: var(--bad); }
+  .mods .c-name { width: 38%; } .mods .c-sem { width: 9%; } .mods .c-ects { width: 9%; } .mods .c-note { width: 11%; } .mods .c-st { width: 18%; } .mods .c-del { width: 4%; }
+  .del { border: 0; background: transparent; cursor: pointer; color: var(--muted); font-size: 18px; line-height: 1; padding: 4px 6px; border-radius: 6px; }
+  .del:hover { color: var(--bad); background: var(--sunk); }
+  .ue-warn { font-size: 13px; color: var(--bad); }
+  .todo { margin: 0; padding-left: 1.2em; }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: 24px 32px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+
+  @media (max-width: 760px) {
+    .score { grid-template-columns: 1fr; }
+    .masthead .wrap { grid-template-columns: 1fr; padding-block: 28px 22px; }
+    .grid2, .grid3, .composer { grid-template-columns: 1fr; }
+    .keys { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .years { grid-template-columns: 1fr; }
+    .years > div + div { border-left: 0; border-top: 1px solid var(--line); }
+    .ev { grid-template-columns: 1fr; gap: 2px; }
+  }
+  @media print {
+    nav.toc, .filters, .composer .actions, .btn { display: none !important; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div>
+      <p class="kicker">ESILV Paris · Promo 2029 · Année 2026-2027</p>
+      <h1>Bachelor Informatique &amp; Cybersécurité, 1<sup>re</sup> année</h1>
+      <p class="lede">Ce qu'il faut retenir de l'année, en particulier le stage et la recherche de stage, avec les dates clés et les contacts de l'école.</p>
+      <ul class="facts">
+        <li><b>60</b>ECTS à valider</li>
+        <li><b>≈ 20 h</b>de cours par semaine</li>
+        <li><b>2 mois</b>de stage minimum</li>
+        <li><b>94</b>étudiants, 3 classes</li>
+      </ul>
+      <div class="side-card reminders">
+        <p class="side-label">À ne pas oublier</p>
+        <ul class="remind" id="remind"></ul>
+      </div>
+    </div>
+    <aside class="side" aria-label="L'essentiel du moment">
+      <div class="next" id="next-box">
+        <small>Prochaine date</small>
+        <strong id="next-title">Forum stages</strong>
+        <span id="next-when">15 octobre 2026</span>
+      </div>
+      <div class="side-card">
+        <p class="side-label">Ensuite</p>
+        <ul class="upcoming" id="upcoming"></ul>
+        <a href="#calendrier" class="side-link">Tout le calendrier →</a>
+      </div>
+      <div class="side-pair">
+        <div class="countdown">
+          <b id="stage-days">—</b>
+          <span id="stage-label">jours avant le début possible du stage</span>
+        </div>
+        <a class="countdown ects-mini" href="#notes">
+          <b id="mini-ects">—</b>
+          <span id="mini-label">ECTS acquis sur 60</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sommaire">
+  <div class="wrap">
+    <a href="#annee">L'année</a>
+    <a href="#calendrier">Calendrier</a>
+    <a href="#stage">Stage</a>
+    <a href="#recherche">Recherche de stage</a>
+    <a href="#mobilite">Mobilité</a>
+    <a href="#regles">Règles &amp; validation</a>
+    <a href="#notes">Notes &amp; ECTS</a>
+    <a href="#finances">Finances</a>
+    <a href="#outils">Outils</a>
+    <a href="#contacts" class="cta">Contacts &amp; mail</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <!-- 1. L'année -->
+  <section id="annee">
+    <h2><span class="num">01</span>L'année en un coup d'œil</h2>
+    <p class="intro">La 1<sup>re</sup> année pose les fondamentaux : cours appliqués, projets et hackathon, puis un stage de découverte de l'entreprise. Il faut valider 60 ECTS, répartis en 7 UE.</p>
+
+    <div class="panel">
+      <h3>Répartition des 60 ECTS par UE</h3>
+      <div class="ects-bar" id="ects-bar" role="img" aria-label="Répartition des 60 ECTS : Informatique 19, Systèmes numériques 13, Mathématiques 10, Transversalité 8, Projet 4, Compléments 3, Stage 3."></div>
+      <ul class="ects-legend" id="ects-legend"></ul>
+      <p class="note">Une UE regroupe plusieurs modules. Au 1<sup>er</sup> semestre, par exemple : Informatique (bases de données, HTML/CSS, PHP, C, structures de données) et Mathématiques (logique, analyse). Le détail complet est dans le schéma pédagogique sur le portail.</p>
+    </div>
+
+    <div class="grid3">
+      <div class="panel">
+        <h3>Comment on apprend</h3>
+        <ul>
+          <li>Cours appliqués, en présentiel et à distance</li>
+          <li>600 h de face-à-face, soit ≈ 20 h par semaine</li>
+          <li><strong>Autant d'heures de travail personnel</strong></li>
+          <li>Contrôles continus, quiz, projets, examens</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Projet fil rouge</h3>
+        <ul>
+          <li>Étude théorique : sept. à nov. 2026</li>
+          <li>Réalisation : nov. 2026 à mars 2027</li>
+          <li>Finalisation : avril à mai 2027</li>
+          <li><strong>Showroom : 31 mai 2027</strong></li>
+        </ul>
+        <p class="note">Exemples montrés : maison connectée, barrière de parking automatique avec Arduino.</p>
+      </div>
+      <div class="panel">
+        <h3>Soft skills</h3>
+        <ul>
+          <li>S1 : efficacité individuelle et collective (15 h), développement durable (16 h 30)</li>
+          <li>S2 : se comprendre et comprendre autrui (15 h), hackathon A1 (15 h), éthique (16 h 30)</li>
+          <li><strong>S2 : formation carrière « recherche de stage »</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="years" aria-label="Le parcours en 3 ans">
+      <div class="now">
+        <span class="y">Année 1 · 60 ECTS · cette année</span>
+        <h3>Projets et hackathon</h3>
+        <p>Stage découverte de <strong>2 mois</strong></p>
+      </div>
+      <div>
+        <span class="y">Année 2 · 60 ECTS</span>
+        <h3>Projets et mobilité internationale</h3>
+        <p>Stage technique de 3 mois · semestre à l'étranger obligatoire au S4</p>
+      </div>
+      <div>
+        <span class="y">Année 3 · 60 ECTS</span>
+        <h3>Spécialité au choix</h3>
+        <p>Data &amp; Cloud, Cybersécurité ou Business Development · stage de 5 à 6 mois <em>ou</em> alternance (2 jours entreprise, 3 jours école)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Calendrier -->
+  <section id="calendrier">
+    <h2><span class="num">02</span>Calendrier de l'année</h2>
+    <p class="intro">Toutes les dates données à la réunion. Les dates passées sont grisées. Filtrez par thème :</p>
+    <div class="filters" id="filters" role="group" aria-label="Filtrer le calendrier"></div>
+    <ol class="timeline" id="timeline"></ol>
+    <p class="note">Les forums et job datings sont présentés sans année dans le document. Ils sont placés ici sur l'année scolaire 2026-2027.</p>
+  </section>
+
+  <!-- 3. Stage -->
+  <section id="stage">
+    <h2><span class="num">03</span>Le stage de 1<sup>re</sup> année</h2>
+    <p class="intro">C'est un <strong>stage de découverte de l'entreprise</strong>, présenté au compte rendu comme un stage d'initiation à l'informatique. Il sert à mettre en pratique ce qui a été appris et à découvrir un domaine professionnel.</p>
+
+    <div class="keys">
+      <div class="key"><b>2 mois</b><span>durée minimum</span></div>
+      <div class="key"><b>7 juin 2027</b><span>début possible à partir de cette date</span></div>
+      <div class="key"><b>3 ECTS</b><span>UE Stage, sur les 60 de l'année</span></div>
+      <div class="key"><b>2 tuteurs</b><span>un à l'école, un dans l'entreprise</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h3>Objectifs</h3>
+        <ul>
+          <li>Découvrir le monde de l'entreprise</li>
+          <li>Maîtriser les premiers savoir-être de l'entreprise</li>
+          <li>Réfléchir à son projet professionnel</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Évaluation</h3>
+        <ul>
+          <li><strong>Rapport de stage obligatoire</strong>, évalué par le tuteur école</li>
+          <li>Évaluation par l'entreprise, faite par le tuteur entreprise</li>
+        </ul>
+        <p class="note">Et ensuite : stage technique de 3 mois en 2<sup>e</sup> année, puis stage de 5 à 6 mois ou alternance en 3<sup>e</sup> année.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Recherche de stage -->
+  <section id="recherche">
+    <h2><span class="num">04</span>Trouver son stage</h2>
+    <p class="intro">L'école accompagne la recherche, mais c'est à l'étudiant de la mener. La Direction des partenariats entreprises revendique 2 500 entreprises partenaires.</p>
+
+    <div class="grid2">
+      <div class="panel">
+        <h3>Ce que l'école fournit</h3>
+        <ul>
+          <li>Des semaines transverses</li>
+          <li>Un cours « savoir chercher son stage »</li>
+          <li>Un accompagnement à la rédaction du CV et de la lettre de motivation</li>
+          <li>Des offres de stage diffusées sur les canaux de l'école (Viva Engage notamment)</li>
+          <li>Une présentation du stage en <strong>janvier 2027</strong>, avec les ressources des années précédentes</li>
+          <li>La formation carrière « recherche de stage » au S2</li>
+          <li>Deux chargées des relations entreprises (voir <a href="#contacts">Contacts</a>)</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Ce que l'école attend de l'étudiant</h3>
+        <ul>
+          <li>Être proactif et <strong>anticiper</strong> ses recherches</li>
+          <li><strong>Répondre</strong> aux sollicitations de l'école</li>
+          <li><strong>Assurer le suivi</strong> de ses démarches auprès des entreprises</li>
+          <li>Suivre la <strong>méthodologie</strong> donnée par les chargées de relations entreprises</li>
+          <li>Ne pas se décourager</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between">
+        <h3>Checklist de recherche de stage</h3>
+        <span class="note">Cochée sur cet appareil uniquement</span>
+      </div>
+      <div class="progress-row"><div class="progress"><i id="check-bar"></i></div><span id="check-count">0 / 0</span></div>
+      <ul class="check" id="checklist"></ul>
+    </div>
+  </section>
+
+  <!-- 5. Mobilité -->
+  <section id="mobilite">
+    <h2><span class="num">05</span>Mobilité internationale (2<sup>e</sup> année)</h2>
+    <div class="warn"><strong>Obligatoire pour être diplômé.</strong> Le semestre à l'étranger a lieu au S4. Le passeport ou la carte d'identité doivent être à jour, ou renouvelés <strong>dès maintenant</strong>.</div>
+    <div class="grid3">
+      <div class="panel">
+        <h3>Sélection</h3>
+        <ul>
+          <li>Niveau d'anglais : <strong>B2</strong></li>
+          <li>Niveau académique</li>
+          <li>Vœux de l'étudiant</li>
+        </ul>
+        <p class="note">D'où l'importance du TOEFL blanc (semaine du 4 janvier 2027) et du TOEFL officiel (17 avril 2027).</p>
+      </div>
+      <div class="panel">
+        <h3>Destinations annoncées</h3>
+        <p>Allemagne, Belgique, Finlande, Hongrie, Lettonie, Maroc, Roumanie, Suède, Tunisie.</p>
+        <p class="note">Liste sujette à modification.</p>
+      </div>
+      <div class="panel">
+        <h3>Coûts à prévoir</h3>
+        <ul>
+          <li>Frais de scolarité éventuels de l'université d'accueil</li>
+          <li>Visa</li>
+          <li>Coût de la vie sur place</li>
+        </ul>
+        <p class="note">Bourse Erasmus possible pour certaines destinations.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Les étapes</h3>
+      <ol>
+        <li>Soumission des vœux, puis commission d'attribution des destinations</li>
+        <li>Réunion d'inscription</li>
+        <li>Inscription auprès de l'université partenaire, dans les délais</li>
+        <li>Réception de la lettre d'admission</li>
+        <li>Réservation du logement et des billets</li>
+        <li>Début du semestre (S4), selon le calendrier de l'université partenaire</li>
+      </ol>
+      <p class="note">Une réunion d'information dédiée est prévue pour les étudiants. Questions restées ouvertes à la réunion parents : frais pour les États-Unis, aide pour trouver des entreprises à l'étranger, informations plus détaillées. Contact : <span class="mailtxt">outgoing@devinci.fr</span>.</p>
+    </div>
+  </section>
+
+  <!-- 6. Règles -->
+  <section id="regles">
+    <h2><span class="num">06</span>Présence, absences et validation</h2>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Présence</h3>
+        <ul>
+          <li>L'étudiant valide sa présence en ligne. L'appel est ouvert et fermé par l'enseignant.</li>
+          <li><strong>Un retard ou un oubli de validation compte comme une absence.</strong></li>
+          <li>18 séances d'absence tolérées par semestre</li>
+          <li>Justificatifs à déposer sur le portail <strong>sous 7 jours</strong></li>
+          <li>Les absences justifiées ne sont pas comptées mais restent visibles. Même refusé, un justificatif reste visible et peut être pris en compte en jury.</li>
+          <li>Les retards dus aux transports ne sont pas un motif d'absence excusée.</li>
+          <li>Absences répétées pour raison médicale : prévenir rapidement le responsable d'année.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Validation</h3>
+        <ul>
+          <li>Un module est validé avec une note finale d'au moins <strong>10/20</strong>.</li>
+          <li>Une UE est validée si <strong>tous ses modules</strong> sont à 10/20 ou plus.</li>
+          <li>Compensation possible dans une UE de 2 modules : moyenne de l'UE ≥ 10 et chaque module ≥ 7,5.</li>
+          <li>Rattrapage : une session par semestre, à condition d'avoir validé au moins 20 ECTS.</li>
+          <li>Points de bonification (salons, portes ouvertes, associations…), ajoutés après les rattrapages</li>
+          <li>L'année est validée quand toutes les UE le sont (60 ECTS).</li>
+          <li>En cas d'échec, un redoublement peut être proposé selon le dossier (ECTS, résultats, absentéisme).</li>
+        </ul>
+        <p class="note">Tolérance zéro pour la fraude, y compris sur l'appel en ligne.</p>
+      </div>
+    </div>
+    <p class="note">Emploi du temps : des journées parfois de 8 h à 20 h ont été signalées par les parents. L'école répond que le planning dépend surtout des disponibilités des intervenants.</p>
+  </section>
+
+  <!-- 7. Notes & ECTS -->
+  <section id="notes">
+    <h2><span class="num">07</span>Notes et ECTS</h2>
+    <p class="intro">Saisissez les notes finales relevées sur le portail (WebApps, onglet Notes). La page applique les règles de validation de l'école et calcule où en sont les ECTS.</p>
+    <div class="warn"><strong>Les notes restent sur cet appareil</strong>, dans ce navigateur. Elles ne sont jamais envoyées sur GitHub ni ailleurs. Pour les retrouver sur un autre appareil, utilisez « Exporter », puis « Importer ».</div>
+
+    <div class="score">
+      <div class="panel">
+        <span class="note">ECTS acquis</span>
+        <div class="big"><b id="sc-acq">0</b><span>/ 60</span></div>
+        <div id="sc-verdict"></div>
+      </div>
+      <div class="panel">
+        <div class="ects-track" id="sc-track" role="img" aria-label="Avancement des ECTS"><span class="t-ok"></span><span class="t-bad"></span><span class="t-wait"></span></div>
+        <ul class="score-legend">
+          <li><i style="background:var(--ok)"></i><span id="lg-ok">0 acquis</span></li>
+          <li><i style="background:var(--bad)"></i><span id="lg-bad">0 à rattraper</span></li>
+          <li><i style="background:var(--muted);opacity:.55"></i><span id="lg-wait">0 sans note</span></li>
+          <li><i style="background:var(--sunk);border:1px solid var(--line)"></i><span id="lg-none">60 à saisir</span></li>
+        </ul>
+        <div class="sem-row" id="sc-sem"></div>
+        <div id="sc-todo"></div>
+      </div>
+    </div>
+
+    <div class="ue-list" id="ue-list"></div>
+
+    <div class="actions">
+      <button type="button" class="btn" id="exp-btn">Exporter mes notes</button>
+      <label class="btn" for="imp-file" style="cursor:pointer">Importer un fichier de notes</label>
+      <input type="file" id="imp-file" accept="application/json,.json" hidden>
+      <button type="button" class="btn" id="reset-btn">Tout effacer</button>
+      <span class="status" id="notes-status" role="status"></span>
+    </div>
+    <p class="note">Règles appliquées, d'après le règlement présenté : module validé à 10/20 ; UE validée si tous ses modules sont à 10 ou plus ; compensation dans une UE de 2 modules si la moyenne de l'UE (pondérée par les ECTS) atteint 10 et chaque module 7,5 ; rattrapage possible si au moins 20 ECTS sont validés dans le semestre. Si une note de rattrapage est saisie, c'est elle qui est retenue. Les modules connus du 1<sup>er</sup> semestre sont déjà inscrits ; ajoutez les autres à partir du schéma pédagogique du portail. Les points de bonification ne sont pas pris en compte. En cas de doute, le relevé officiel fait foi.</p>
+  </section>
+
+  <!-- 8. Finances -->
+  <section id="finances">
+    <h2><span class="num">08</span>Finances et portail parents</h2>
+    <div class="warn">La scolarité et l'équipe pédagogique <strong>n'ont pas accès aux informations financières</strong>. Toute question d'argent va au service comptabilité.</div>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Paiement</h3>
+        <ul>
+          <li>Facture téléchargeable sur le portail, onglet <strong>Finances</strong>, à partir du <strong>26 octobre 2026</strong></li>
+          <li>Deux modes au choix : comptant à réception de la facture, ou <strong>7 prélèvements</strong> de fin octobre 2026 à fin avril 2027 (jours ouvrés)</li>
+          <li>Le « règlement en cours » affiché correspond à l'acompte versé à l'inscription. Il sera déduit de la facture.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Bourses et accès</h3>
+        <ul>
+          <li>Bourse : déposer la notification conditionnelle dans Finances, puis Bourses &amp; CVEC. Elle est validée en fin de semaine auprès du Crous, et l'étudiant la reçoit environ 10 jours plus tard.</li>
+          <li>Identifiants du portail non reçus : vérifier les courriers indésirables. Parfois, l'étudiant s'est déclaré lui-même responsable financier.</li>
+          <li>Changer de responsable financier : s'adresser au service comptabilité.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Outils -->
+  <section id="outils">
+    <h2><span class="num">09</span>Outils et liens</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Outil</th><th>À quoi il sert</th><th>Adresse</th></tr></thead>
+        <tbody>
+          <tr><td>Portail Léonard de Vinci</td><td>Point d'entrée vers tous les services</td><td><a href="https://www.leonard-de-vinci.net" target="_blank" rel="noopener">leonard-de-vinci.net</a></td></tr>
+          <tr><td>WebApps</td><td>Emploi du temps, notes, absences, informations personnelles</td><td><a href="https://my.devinci.fr" target="_blank" rel="noopener">my.devinci.fr</a></td></tr>
+          <tr><td>DeVinci Learning</td><td>Supports de cours, TD, quiz, dépôt des rapports et devoirs</td><td><a href="https://learning.devinci.fr" target="_blank" rel="noopener">learning.devinci.fr</a></td></tr>
+          <tr><td>Portail parents</td><td>Menu Scolarité : emploi du temps, absences, notes, documents · bouton « Accéder aux finances »</td><td>Accès du responsable financier</td></tr>
+          <tr><td>Viva Engage</td><td>Informations des services, offres de stage, document des contacts utiles</td><td>Groupe « ESILV - Promo 2029 - BIC 1 »</td></tr>
+          <tr><td>ScholarVox</td><td>Bibliothèque numérique</td><td><a href="https://devinci.scholarvox.com" target="_blank" rel="noopener">devinci.scholarvox.com</a></td></tr>
+          <tr><td>LéoLearning</td><td>Association de tutorat</td><td>Groupe DeVinci Learning</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Également sur place : 3 psychologues (2 à Paris), une infirmière dédiée, une plateforme de signalement (violences, harcèlement, bizutage, discriminations), un accompagnement handicap (aménagements, conseils MDPH), 60 associations et 3 salles de sport en accès libre au campus du Parc.</p>
+  </section>
+
+  <!-- 9. Contacts -->
+  <section id="contacts">
+    <h2><span class="num">10</span>Contacts et mail</h2>
+    <p class="intro">Les adresses communiquées par l'école. Cliquez sur « Écrire » pour préparer un message, ou utilisez le formulaire plus bas pour écrire à plusieurs personnes à la fois.</p>
+    <div class="contacts" id="contacts-list"></div>
+    <div class="panel">
+      <h3>Sans adresse mail communiquée</h3>
+      <ul>
+        <li>Cécile FRANKART, directrice de l'ESILV</li>
+        <li>Émilie DAUDIN-CLAVAUD, directrice des partenariats entreprises &amp; alumni</li>
+        <li>Wilfried HOLLET, responsable du développement des partenariats entreprises</li>
+        <li>Service comptabilité : passer par l'espace responsable financier du portail</li>
+      </ul>
+      <p class="note">Standard de l'école : <span class="mailtxt">01 81 00 28 38</span> · 47 boulevard de Pesaro, 92000 Nanterre. D'autres contacts figurent dans l'espace responsable financier et dans le document partagé sur Viva Engage.</p>
+    </div>
+
+    <div class="panel" id="composer">
+      <h3>Écrire à l'école</h3>
+      <div class="composer">
+        <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+          <label class="field" for="tpl"><span>Objet du message</span>
+            <select id="tpl"></select>
+          </label>
+          <div class="field">
+            <span>Destinataires</span>
+            <div class="recips" id="recips"></div>
+            <div class="actions"><button type="button" class="btn small" id="all-btn">Tout cocher</button><button type="button" class="btn small" id="none-btn">Tout décocher</button></div>
+          </div>
+          <label class="field" for="student"><span>Nom de l'étudiant·e</span>
+            <input id="student" type="text" placeholder="Prénom Nom" autocomplete="off">
+          </label>
+          <label class="field" for="sender"><span>Votre nom</span>
+            <input id="sender" type="text" placeholder="Prénom Nom" autocomplete="name">
+          </label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+          <label class="field" for="subject"><span>Sujet</span>
+            <input id="subject" type="text">
+          </label>
+          <label class="field" for="body"><span>Message</span>
+            <textarea id="body"></textarea>
+          </label>
+          <div class="actions">
+            <a class="btn primary" id="mailto-btn" href="#">Ouvrir dans ma messagerie</a>
+            <a class="btn" id="gmail-btn" href="#" target="_blank" rel="noopener">Ouvrir dans Gmail</a>
+            <button type="button" class="btn" id="copy-msg">Copier le message</button>
+            <button type="button" class="btn" id="copy-to">Copier les adresses</button>
+          </div>
+          <p class="status" id="status" role="status"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Récapitulatif personnel et non officiel, établi d'après la présentation « Réunion parents BIC 1<sup>re</sup> année 2026-2027 » et le compte rendu de la réunion du 7 octobre 2026. En cas de doute, le portail, le règlement pédagogique et le service scolarité font foi.</p>
+    <p>Mis à jour le 14 octobre 2026.</p>
+  </div>
+</footer>
+
+<script>
+  // ---------------------------------------------------------------------------
+  // Données
+  // ---------------------------------------------------------------------------
+  const CATS = {
+    stage:    { label: 'Stage',        color: '--c-stage' },
+    projet:   { label: 'Projet',       color: '--c-projet' },
+    anglais:  { label: 'Anglais',      color: '--c-anglais' },
+    carriere: { label: 'Forums & alternance', color: '--c-carriere' },
+    finances: { label: 'Finances',     color: '--c-finances' },
+    admin:    { label: 'École',        color: '--c-admin' }
+  };
+
+  // d = début (AAAA-MM-JJ), fin = dernier jour si période, quand = libellé affiché
+  const EVENTS = [
+    { d: '2026-09-01', fin: '2026-09-30', approx: true, quand: 'Sept. 2026', cat: 'projet', t: 'Présentation du projet fil rouge' },
+    { d: '2026-09-01', fin: '2026-11-30', approx: true, quand: 'Sept. → nov.', cat: 'projet', t: 'Projet : étude théorique' },
+    { d: '2026-10-07', cat: 'admin', t: 'Réunion parents', s: 'Compte rendu diffusé par l’école' },
+    { d: '2026-10-15', cat: 'stage', t: 'Forum stages' },
+    { d: '2026-10-26', cat: 'finances', t: 'Facture disponible sur le portail', s: 'Onglet Finances' },
+    { d: '2026-10-30', fin: '2027-04-30', approx: true, quand: 'Fin oct. → fin avr.', cat: 'finances', t: 'Prélèvements (si paiement en 7 fois)', s: 'Jours ouvrés, de fin octobre 2026 à fin avril 2027' },
+    { d: '2026-11-01', fin: '2027-03-31', approx: true, quand: 'Nov. → mars', cat: 'projet', t: 'Projet : étude pratique et réalisation' },
+    { d: '2026-11-19', cat: 'stage', t: 'Job dating' },
+    { d: '2026-12-03', cat: 'stage', t: 'Forum stages' },
+    { d: '2027-01-04', fin: '2027-01-08', quand: 'Sem. du 4 janv.', cat: 'anglais', t: 'TOEFL blanc' },
+    { d: '2027-01-01', fin: '2027-01-31', approx: true, quand: 'Janv. 2027', cat: 'stage', t: 'Présentation du stage', s: 'Avec les ressources des années précédentes' },
+    { d: '2027-03-25', fin: '2027-04-01', quand: '25 mars', cat: 'carriere', t: 'Forum alternance généraliste', s: 'Et en ligne du 25 mars au 1er avril' },
+    { d: '2027-04-01', fin: '2027-05-31', approx: true, quand: 'Avr. → mai', cat: 'projet', t: 'Projet : finalisation' },
+    { d: '2027-04-15', cat: 'carriere', t: 'Job dating alternance' },
+    { d: '2027-04-17', cat: 'anglais', t: 'Examen officiel du TOEFL', s: 'Exigence de diplomation' },
+    { d: '2027-05-17', fin: '2027-05-21', quand: '17 → 21 mai', cat: 'anglais', t: 'Bootcamp TOEFL Reinforced (30 h)', s: 'Pour les étudiants de niveau inférieur à B2' },
+    { d: '2027-05-27', fin: '2027-06-03', quand: '27 mai', cat: 'carriere', t: 'Forum alternance', s: 'Et en ligne du 27 mai au 3 juin' },
+    { d: '2027-05-31', cat: 'projet', t: 'Showroom du projet fil rouge', s: 'Fin du projet : fin mai, début juin' },
+    { d: '2027-06-07', cat: 'stage', t: 'Début possible du stage', s: '2 mois minimum' },
+    { d: '2027-06-10', cat: 'carriere', t: 'Forum Bachelor' },
+    { d: '2027-06-24', cat: 'carriere', t: 'Job Fair' }
+  ];
+
+  const UES = [
+    { k: 'info', nom: 'Informatique', ects: 19, c: '--c-stage' },
+    { k: 'sysnum', nom: 'Systèmes numériques', ects: 13, c: '--c-projet' },
+    { k: 'maths', nom: 'Mathématiques', ects: 10, c: '--c-anglais' },
+    { k: 'transv', nom: 'Transversalité', ects: 8, c: '--c-carriere' },
+    { k: 'projet', nom: 'Projet', ects: 4, c: '--c-finances' },
+    { k: 'compl', nom: 'Compléments', ects: 3, c: '--c-admin' },
+    { k: 'stage', nom: 'Stage', ects: 3, c: '--ok' }
+  ];
+
+  const CONTACTS = [
+    { id: 'izri', nom: 'Nora IZRI', role: 'Responsable du Bachelor BIC et référente pédagogique', pour: 'Pédagogie, suivi de l’étudiant', mail: 'nora.izri@devinci.fr' },
+    { id: 'scol', nom: 'Service scolarité', role: 'Blandine JARRY (responsable) et Audeline PERRIER (référente Bachelors)', pour: 'Absences, justificatifs, documents', mail: 'scolarite-esilv@devinci.fr' },
+    { id: 'massie', nom: 'Marine MASSIE', role: 'Chargée des relations entreprises et de l’accompagnement des étudiants', pour: 'Recherche de stage', mail: 'marine.massie@devinci.fr' },
+    { id: 'traore', nom: 'Prunelle TRAORE', role: 'Chargée des relations entreprises et de l’accompagnement des étudiants', pour: 'Recherche de stage', mail: 'prunelle.traore@devinci.fr' },
+    { id: 'outgoing', nom: 'Relations internationales', role: 'Mobilité sortante', pour: 'Semestre à l’étranger (S4)', mail: 'outgoing@devinci.fr' },
+    { id: 'alumni', nom: 'Partenariats entreprises & Alumni', role: 'Réseau des diplômés : annuaire, mentoring, opportunités', pour: 'Réseau, mentoring', mail: 'alumni@devinci.fr' }
+  ];
+
+  const MODELES = {
+    stage: {
+      label: 'Question sur le stage de 1re année', to: ['massie', 'traore'],
+      sujet: 'Stage de 1re année – {etudiant}, BIC A1',
+      corps: 'Bonjour,\n\nJe suis le parent de {etudiant}, en 1re année du Bachelor Informatique & Cybersécurité (promo 2029).\n\nJe souhaiterais avoir des précisions sur le stage de découverte de l’entreprise (2 mois minimum, à partir du 7 juin 2027) :\n- \n\nJe vous remercie par avance pour votre retour.\n\nCordialement,\n{parent}'
+    },
+    recherche: {
+      label: 'Recherche de stage : offres et accompagnement', to: ['massie', 'traore'],
+      sujet: 'Recherche de stage – {etudiant}, BIC A1',
+      corps: 'Bonjour,\n\nJe suis le parent de {etudiant}, en 1re année du Bachelor Informatique & Cybersécurité (promo 2029).\n\n{etudiant} a commencé ses recherches de stage et souhaiterait savoir comment être accompagné(e) au mieux (relecture du CV, offres disponibles, entreprises partenaires).\n\nMerci par avance pour votre aide.\n\nCordialement,\n{parent}'
+    },
+    absence: {
+      label: 'Absence ou justificatif', to: ['scol'],
+      sujet: 'Absence – {etudiant}, BIC A1',
+      corps: 'Bonjour,\n\nJe vous informe de l’absence de {etudiant}, en 1re année du Bachelor Informatique & Cybersécurité, le [date], pour le motif suivant : [motif].\n\nLe justificatif sera déposé sur le portail dans les 7 jours.\n\nCordialement,\n{parent}'
+    },
+    pedago: {
+      label: 'Suivi pédagogique', to: ['izri'],
+      sujet: 'Suivi pédagogique – {etudiant}, BIC A1',
+      corps: 'Bonjour Madame Izri,\n\nJe suis le parent de {etudiant}, en 1re année du Bachelor Informatique & Cybersécurité (promo 2029).\n\nJe souhaiterais échanger avec vous au sujet de :\n- \n\nCordialement,\n{parent}'
+    },
+    mobilite: {
+      label: 'Mobilité internationale', to: ['outgoing'],
+      sujet: 'Mobilité internationale S4 – {etudiant}, BIC A1',
+      corps: 'Bonjour,\n\nJe suis le parent de {etudiant}, en 1re année du Bachelor Informatique & Cybersécurité (promo 2029).\n\nJ’aurais quelques questions sur la mobilité obligatoire du S4 (destinations, coûts à prévoir, bourses) :\n- \n\nCordialement,\n{parent}'
+    },
+    libre: { label: 'Message libre', to: [], sujet: '', corps: 'Bonjour,\n\n\n\nCordialement,\n{parent}' }
+  };
+
+  const CHECKLIST = [
+    { t: 'Noter les dates des forums et job datings', q: '' },
+    { t: 'Préparer un CV (cours CV et lettre de motivation à l’école)', q: '' },
+    { t: 'Rédiger une lettre de motivation type', q: '' },
+    { t: 'Aller au Forum stages', q: '15 oct. 2026' },
+    { t: 'Aller au Job dating', q: '19 nov. 2026' },
+    { t: 'Aller au Forum stages', q: '3 déc. 2026' },
+    { t: 'Assister à la présentation du stage et récupérer les ressources des années précédentes', q: 'janv. 2027' },
+    { t: 'Suivre la formation carrière « recherche de stage »', q: 'S2' },
+    { t: 'Surveiller les offres diffusées par l’école (Viva Engage)', q: 'en continu' },
+    { t: 'Contacter les chargées de relations entreprises si besoin', q: '' },
+    { t: 'Tenir un suivi de ses candidatures et relancer les entreprises', q: 'en continu' },
+    { t: 'Stage trouvé : 2 mois minimum, à partir du 7 juin 2027', q: 'juin 2027' },
+    { t: 'Rendre le rapport de stage au tuteur école', q: 'après le stage' }
+  ];
+
+  // ---------------------------------------------------------------------------
+  // Outils
+  // ---------------------------------------------------------------------------
+  const $ = id => document.getElementById(id);
+  const lire = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+  const ecrire = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+  const jour = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+  const aujourdhui = (() => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); })();
+  const JOUR_MS = 86400000;
+  const fmt = (d, opts) => d.toLocaleDateString('fr-FR', opts || { day: 'numeric', month: 'long', year: 'numeric' });
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+  // ---------------------------------------------------------------------------
+  // En-tête : prochaine date et compte à rebours du stage
+  // ---------------------------------------------------------------------------
+  // Dates précises à venir (les périodes approximatives, type « janvier 2027 », sont exclues)
+  const aVenir = EVENTS.filter(e => !e.approx && jour(e.d) >= aujourdhui).sort((a, b) => a.d.localeCompare(b.d));
+  const prochain = aVenir[0];
+  const relatif = d => {
+    const n = Math.round((jour(d) - aujourdhui) / JOUR_MS);
+    return n === 0 ? "aujourd'hui" : n === 1 ? 'demain' : n < 7 ? `dans ${n} j` : n < 60 ? `dans ${Math.round(n / 7)} sem.` : `dans ${Math.round(n / 30)} mois`;
+  };
+  if (prochain) {
+    const n = Math.round((jour(prochain.d) - aujourdhui) / JOUR_MS);
+    $('next-title').textContent = prochain.t;
+    const rel = n === 0 ? "aujourd'hui" : n === 1 ? 'demain' : `dans ${n} jours`;
+    $('next-when').textContent = `${fmt(jour(prochain.d), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} · ${rel}`;
+  } else {
+    $('next-title').textContent = 'Année terminée';
+    $('next-when').textContent = 'Toutes les dates de 2026-2027 sont passées';
+  }
+  // « Ensuite » : les 4 dates suivantes (on y ajoute les étapes du stage annoncées au mois près)
+  const ensuite = EVENTS.filter(e => e !== prochain && jour(e.d) >= aujourdhui && (!e.approx || e.cat === 'stage'))
+    .sort((a, b) => a.d.localeCompare(b.d)).slice(0, 4);
+  ensuite.forEach(e => {
+    const li = el('li');
+    li.appendChild(el('span', 'd', e.approx ? e.quand : fmt(jour(e.d), { day: 'numeric', month: 'short' })));
+    const t = el('span', 't');
+    const dot = el('i'); dot.style.background = `var(${CATS[e.cat].color})`;
+    t.append(dot, el('span', null, e.t));
+    li.append(t, el('span', 'r', e.approx ? '' : relatif(e.d)));
+    $('upcoming').appendChild(li);
+  });
+  if (!ensuite.length) $('upcoming').appendChild(el('li', null, 'Plus aucune date prévue cette année.'));
+
+  const jStage = Math.round((jour('2027-06-07') - aujourdhui) / JOUR_MS);
+  if (jStage > 0) { $('stage-days').textContent = jStage; $('stage-label').textContent = `jours avant le début possible du stage (7 juin 2027)`; }
+  else { $('stage-days').textContent = '✓'; $('stage-label').textContent = 'Période de stage ouverte depuis le 7 juin 2027'; }
+
+  // « À ne pas oublier » : rappels permanents + rappels datés qui disparaissent une fois passés
+  const RAPPELS = [
+    { t: 'Facture sur le portail (onglet Finances) à partir du 26 octobre', jusqu: '2026-10-26' },
+    { t: 'Justificatif d’absence à déposer sur le portail sous 7 jours' },
+    { t: 'Retard ou oubli de l’appel en ligne = absence (18 tolérées par semestre)' },
+    { t: 'Préparer CV et lettre de motivation pour les forums', jusqu: '2026-12-03' },
+    { t: 'Passeport ou carte d’identité à jour pour la mobilité du S4' },
+    { t: 'TOEFL blanc la semaine du 4 janvier : viser le B2', depuis: '2026-12-01', jusqu: '2027-01-08' }
+  ];
+  RAPPELS.filter(r => (!r.jusqu || jour(r.jusqu) >= aujourdhui) && (!r.depuis || jour(r.depuis) <= aujourdhui))
+    .slice(0, 4).forEach(r => $('remind').appendChild(el('li', null, r.t)));
+
+  // ---------------------------------------------------------------------------
+  // UE : barre à l'échelle (largeur = ECTS / 60)
+  // ---------------------------------------------------------------------------
+  const total = UES.reduce((s, u) => s + u.ects, 0);
+  UES.forEach(u => {
+    const s = el('span', null, u.ects >= 10 ? `${u.nom} · ${u.ects}` : String(u.ects));
+    s.style.width = (u.ects / total * 100) + '%';
+    s.style.background = `var(${u.c})`;
+    s.style.color = 'var(--surface)';
+    s.title = `${u.nom} : ${u.ects} ECTS`;
+    $('ects-bar').appendChild(s);
+    const li = el('li');
+    const i = el('i'); i.style.background = `var(${u.c})`;
+    li.append(i, document.createTextNode(u.nom), el('b', null, `${u.ects} ECTS`));
+    $('ects-legend').appendChild(li);
+  });
+
+  // ---------------------------------------------------------------------------
+  // Calendrier
+  // ---------------------------------------------------------------------------
+  let filtre = lire('memo-filtre') || 'tout';
+  if (filtre !== 'tout' && !CATS[filtre]) filtre = 'tout';
+
+  function boutonFiltre(cle, label, couleur) {
+    const b = el('button');
+    b.type = 'button';
+    if (couleur) { const i = el('i'); i.style.background = `var(${couleur})`; b.appendChild(i); }
+    b.appendChild(document.createTextNode(label));
+    b.setAttribute('aria-pressed', String(filtre === cle));
+    b.addEventListener('click', () => { filtre = cle; ecrire('memo-filtre', cle); dessinerFiltres(); dessinerFrise(); });
+    return b;
+  }
+  function dessinerFiltres() {
+    const box = $('filters');
+    box.replaceChildren(boutonFiltre('tout', 'Tout'));
+    Object.entries(CATS).forEach(([k, c]) => box.appendChild(boutonFiltre(k, c.label, c.color)));
+  }
+
+  function dessinerFrise() {
+    const ol = $('timeline');
+    ol.replaceChildren();
+    const liste = EVENTS.filter(e => filtre === 'tout' || e.cat === filtre)
+      .slice().sort((a, b) => a.d.localeCompare(b.d) || (a.fin ? 1 : 0) - (b.fin ? 1 : 0));
+    let mois = '', ligneJour = false;
+    const prochainId = prochain && liste.includes(prochain) ? prochain : null;
+    liste.forEach(e => {
+      const debut = jour(e.d), fin = jour(e.fin || e.d);
+      if (!ligneJour && debut > aujourdhui) {
+        const t = el('li', 'today-line'); t.appendChild(el('b', null, "Aujourd'hui · " + fmt(aujourdhui, { day: 'numeric', month: 'long' })));
+        ol.appendChild(t); ligneJour = true;
+      }
+      const m = fmt(debut, { month: 'long', year: 'numeric' });
+      if (m !== mois) { mois = m; ol.appendChild(el('li', 'month', m)); }
+      const li = el('li', 'ev');
+      li.style.setProperty('--cat', `var(${CATS[e.cat].color})`);
+      if (fin < aujourdhui) li.classList.add('past');
+      if (e === prochainId) li.classList.add('is-next');
+      li.appendChild(el('div', 'when', e.quand || fmt(debut, { weekday: 'short', day: 'numeric', month: 'short' })));
+      const what = el('div', 'what');
+      what.appendChild(el('strong', null, e.t));
+      if (e.s) what.appendChild(el('span', null, e.s));
+      what.appendChild(el('span', 'tag cat', CATS[e.cat].label));
+      li.appendChild(what);
+      ol.appendChild(li);
+    });
+    if (!ligneJour && liste.length) {
+      const t = el('li', 'today-line'); t.appendChild(el('b', null, "Aujourd'hui · " + fmt(aujourdhui, { day: 'numeric', month: 'long' })));
+      ol.appendChild(t);
+    }
+  }
+  dessinerFiltres();
+  dessinerFrise();
+
+  // ---------------------------------------------------------------------------
+  // Checklist (mémorisée dans ce navigateur)
+  // ---------------------------------------------------------------------------
+  let coches = [];
+  try { coches = JSON.parse(lire('memo-checklist') || '[]'); } catch (e) { coches = []; }
+  function majProgression() {
+    const n = coches.filter(Boolean).length;
+    $('check-count').textContent = `${n} / ${CHECKLIST.length}`;
+    $('check-bar').style.width = (n / CHECKLIST.length * 100) + '%';
+  }
+  CHECKLIST.forEach((c, i) => {
+    const li = el('li');
+    const lab = el('label');
+    lab.htmlFor = 'chk' + i;
+    const inp = el('input');
+    inp.type = 'checkbox'; inp.id = 'chk' + i; inp.checked = !!coches[i];
+    inp.addEventListener('change', () => { coches[i] = inp.checked; ecrire('memo-checklist', JSON.stringify(coches)); majProgression(); });
+    lab.append(inp, el('span', null, c.t), el('small', null, c.q));
+    li.appendChild(lab);
+    $('checklist').appendChild(li);
+  });
+  majProgression();
+
+  // ---------------------------------------------------------------------------
+  // Contacts et composeur de mail
+  // ---------------------------------------------------------------------------
+  const statut = $('status');
+  let statutTimer = null;
+  function dire(t) { statut.textContent = t; clearTimeout(statutTimer); statutTimer = setTimeout(() => { statut.textContent = ''; }, 3500); }
+  async function copier(texte, message) {
+    try { await navigator.clipboard.writeText(texte); dire(message); }
+    catch (e) {
+      const ta = el('textarea'); ta.value = texte; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand('copy'); } catch (err) {}
+      ta.remove();
+      dire(ok ? message : 'Copie impossible : sélectionnez le texte à la main.');
+    }
+  }
+
+  CONTACTS.forEach(c => {
+    const card = el('div', 'contact');
+    card.append(el('span', 'who', c.nom), el('span', 'role', c.role));
+    const pour = el('span', 'for'); pour.append(el('strong', null, 'Pour : '), document.createTextNode(c.pour));
+    card.append(pour, el('span', 'mail', c.mail));
+    const row = el('div', 'row');
+    const ecr = el('button', 'btn small', 'Écrire');
+    ecr.type = 'button';
+    ecr.addEventListener('click', () => {
+      $('tpl').value = 'libre'; appliquerModele(false);
+      document.querySelectorAll('#recips input').forEach(i => { i.checked = i.value === c.id; });
+      majLiens();
+      $('composer').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      $('subject').focus();
+    });
+    const cp = el('button', 'btn small', 'Copier l’adresse');
+    cp.type = 'button';
+    cp.addEventListener('click', () => copier(c.mail, 'Adresse copiée : ' + c.mail));
+    row.append(ecr, cp);
+    card.appendChild(row);
+    $('contacts-list').appendChild(card);
+
+    const lab = el('label');
+    const inp = el('input'); inp.type = 'checkbox'; inp.value = c.id; inp.id = 'to-' + c.id;
+    inp.addEventListener('change', majLiens);
+    const txt = el('span'); txt.append(document.createTextNode(c.nom + ' '), el('em', null, c.mail));
+    lab.htmlFor = inp.id;
+    lab.append(inp, txt);
+    $('recips').appendChild(lab);
+  });
+
+  Object.entries(MODELES).forEach(([k, m]) => $('tpl').add(new Option(m.label, k)));
+  $('student').value = lire('memo-etudiant') || '';
+  $('sender').value = lire('memo-parent') || '';
+
+  const remplir = s => s
+    .replaceAll('{etudiant}', $('student').value.trim() || '[Nom de l’étudiant·e]')
+    .replaceAll('{parent}', $('sender').value.trim() || '[Votre nom]');
+
+  // Le modèle brut est conservé pour pouvoir réinjecter les noms tant que l'utilisateur n'a pas retouché le texte.
+  let brutSujet = '', brutCorps = '', sujetTouche = false, corpsTouche = false;
+  function appliquerModele(cocher = true) {
+    const m = MODELES[$('tpl').value];
+    brutSujet = m.sujet; brutCorps = m.corps; sujetTouche = false; corpsTouche = false;
+    $('subject').value = remplir(brutSujet);
+    $('body').value = remplir(brutCorps);
+    if (cocher) document.querySelectorAll('#recips input').forEach(i => { i.checked = m.to.includes(i.value); });
+    majLiens();
+  }
+  function destinataires() {
+    return [...document.querySelectorAll('#recips input:checked')].map(i => CONTACTS.find(c => c.id === i.value).mail);
+  }
+  function majLiens() {
+    const to = destinataires();
+    const sujet = $('subject').value, corps = $('body').value.replace(/\r?\n/g, '\r\n');
+    $('mailto-btn').href = 'mailto:' + to.join(',') + '?subject=' + encodeURIComponent(sujet) + '&body=' + encodeURIComponent(corps);
+    $('gmail-btn').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to.join(',')) +
+      '&su=' + encodeURIComponent(sujet) + '&body=' + encodeURIComponent($('body').value);
+  }
+
+  $('tpl').addEventListener('change', () => appliquerModele(true));
+  ['student', 'sender'].forEach(id => $(id).addEventListener('input', () => {
+    ecrire(id === 'student' ? 'memo-etudiant' : 'memo-parent', $(id).value);
+    if (!sujetTouche) $('subject').value = remplir(brutSujet);
+    if (!corpsTouche) $('body').value = remplir(brutCorps);
+    majLiens();
+  }));
+  $('subject').addEventListener('input', () => { sujetTouche = true; majLiens(); });
+  $('body').addEventListener('input', () => { corpsTouche = true; majLiens(); });
+  $('all-btn').addEventListener('click', () => { document.querySelectorAll('#recips input').forEach(i => { i.checked = true; }); majLiens(); });
+  $('none-btn').addEventListener('click', () => { document.querySelectorAll('#recips input').forEach(i => { i.checked = false; }); majLiens(); });
+  $('mailto-btn').addEventListener('click', e => { if (!destinataires().length) { e.preventDefault(); dire('Cochez au moins un destinataire.'); } });
+  $('gmail-btn').addEventListener('click', e => { if (!destinataires().length) { e.preventDefault(); dire('Cochez au moins un destinataire.'); } });
+  $('copy-msg').addEventListener('click', () => copier('Objet : ' + $('subject').value + '\n\n' + $('body').value, 'Message copié.'));
+  $('copy-to').addEventListener('click', () => {
+    const to = destinataires();
+    if (!to.length) { dire('Cochez au moins un destinataire.'); return; }
+    copier(to.join(', '), 'Adresses copiées.');
+  });
+
+  $('tpl').value = 'stage';
+  appliquerModele(true);
+
+  // ---------------------------------------------------------------------------
+  // Notes & ECTS (mémorisées dans ce navigateur uniquement)
+  // ---------------------------------------------------------------------------
+  const CLE_NOTES = 'memo-notes-v1';
+  let uid = 0;
+  const mod = (nom, sem, ects) => ({ id: 'm' + (++uid), nom, sem, ects, note: '', ratt: '' });
+  function notesParDefaut() {
+    return {
+      info: [mod('Bases de données', 'S1', 2), mod('Développement Web HTML/CSS', 'S1', 2), mod('Développement Web PHP', 'S1', 2), mod('Programmation C', 'S1', 2), mod('Structures de données', 'S1', 2)],
+      sysnum: [], maths: [mod('Logique mathématique', 'S1', 2), mod('Analyse', 'S1', 2)],
+      transv: [], projet: [], compl: [], stage: [mod('Stage de découverte de l’entreprise', 'S2', 3)]
+    };
+  }
+  function chargerNotes() {
+    try {
+      const d = JSON.parse(lire(CLE_NOTES) || 'null');
+      if (valideNotes(d)) { d && Object.values(d).flat().forEach(m => { m.id = 'm' + (++uid); }); return d; }
+    } catch (e) {}
+    return notesParDefaut();
+  }
+  function valideNotes(d) {
+    if (!d || typeof d !== 'object') return false;
+    return UES.every(u => Array.isArray(d[u.k]) && d[u.k].every(m => m && typeof m === 'object'
+      && typeof m.nom === 'string' && (m.sem === 'S1' || m.sem === 'S2') && Number.isFinite(+m.ects)));
+  }
+  let notes = chargerNotes();
+  const sauver = () => {
+    const propre = {};
+    UES.forEach(u => { propre[u.k] = notes[u.k].map(({ nom, sem, ects, note, ratt }) => ({ nom, sem, ects: +ects || 0, note, ratt })); });
+    ecrire(CLE_NOTES, JSON.stringify(propre));
+    return propre;
+  };
+
+  // « 12,5 » ou « 12.5 » -> 12.5 ; vide -> null ; hors 0-20 -> NaN
+  function lireNote(s) {
+    s = String(s ?? '').trim().replace(',', '.');
+    if (s === '') return null;
+    const n = Number(s);
+    return Number.isFinite(n) && n >= 0 && n <= 20 ? n : NaN;
+  }
+  const retenue = m => {
+    const r = lireNote(m.ratt), n = lireNote(m.note);
+    if (r !== null && !Number.isNaN(r)) return r;
+    return n !== null && !Number.isNaN(n) ? n : null;
+  };
+  const fmtN = n => (Math.round(n * 100) / 100).toLocaleString('fr-FR');
+
+  function evalUE(u) {
+    const mods = notes[u.k];
+    const vals = mods.map(retenue);
+    const ectsSaisis = mods.reduce((s, m) => s + (+m.ects || 0), 0);
+    const toutesNotees = mods.length > 0 && vals.every(v => v !== null);
+    // Verdict sur l'UE seulement quand tous ses modules sont inscrits (ECTS saisis = ECTS de l'UE)
+    const complete = ectsSaisis >= u.ects;
+    let statut = 'vide';
+    if (mods.length) statut = 'encours';
+    let moy = null;
+    if (toutesNotees && complete) {
+      // Moyenne pondérée par les ECTS (moyenne simple si aucun ECTS n'est renseigné)
+      const poids = mods.reduce((s, m) => s + (+m.ects || 0), 0);
+      moy = poids > 0
+        ? mods.reduce((s, m, i) => s + vals[i] * (+m.ects || 0), 0) / poids
+        : vals.reduce((s, v) => s + v, 0) / vals.length;
+      if (vals.every(v => v >= 10)) statut = 'validee';
+      else if (mods.length === 2 && moy >= 10 && vals.every(v => v >= 7.5)) statut = 'compensee';
+      else statut = 'non';
+    }
+    const ueValidee = statut === 'validee' || statut === 'compensee';
+    const etats = mods.map((m, i) => {
+      const v = vals[i];
+      if (v === null) return 'sans';
+      if (v >= 10) return 'ok';
+      if (statut === 'compensee') return 'comp';
+      return lireNote(m.ratt) !== null ? 'echec' : 'ratt';
+    });
+    let acquis = 0, aRatt = 0, attente = 0;
+    mods.forEach((m, i) => {
+      const e = +m.ects || 0;
+      if (ueValidee || etats[i] === 'ok') acquis += e;
+      else if (etats[i] === 'sans') attente += e;
+      else aRatt += e;
+    });
+    return { mods, vals, etats, statut, moy, ectsSaisis, acquis, aRatt, attente };
+  }
+
+  const PILL = {
+    vide: ['wait', 'Aucun module saisi'], encours: ['wait', 'En cours'], validee: ['ok', 'UE validée'],
+    compensee: ['comp', 'Validée par compensation'], non: ['bad', 'UE non validée']
+  };
+  const ETAT = {
+    sans: ['wait', '—'], ok: ['ok', 'Validé'], comp: ['comp', 'Compensé'], ratt: ['bad', 'À rattraper'], echec: ['bad', 'Non validé']
+  };
+  const pill = ([cls, txt]) => el('span', 'pill ' + cls, txt);
+
+  const refs = {}; // éléments à mettre à jour sans tout redessiner (garde le focus)
+
+  function dessinerUEs() {
+    const box = $('ue-list');
+    box.replaceChildren();
+    UES.forEach(u => {
+      const card = el('div', 'ue');
+      card.style.setProperty('--ue', `var(${u.c})`);
+      const head = el('div', 'ue-head');
+      head.appendChild(el('h3', null, u.nom));
+      const meta = el('span', 'meta');
+      const p = el('span');
+      head.append(meta, p);
+      card.appendChild(head);
+      const warn = el('div', 'ue-warn'); warn.hidden = true;
+      card.appendChild(warn);
+      refs[u.k] = { meta, pill: p, warn, rows: {} };
+
+      if (notes[u.k].length) {
+        const wrap = el('div', 'table-wrap');
+        const t = el('table', 'mods');
+        t.innerHTML = '<thead><tr><th class="c-name">Module</th><th class="c-sem">Sem.</th><th class="c-ects">ECTS</th><th class="c-note">Note /20</th><th class="c-note">Rattrapage</th><th class="c-st">Statut</th><th class="c-del"><span class="sr" hidden>Supprimer</span></th></tr></thead>';
+        const tb = el('tbody');
+        notes[u.k].forEach(m => tb.appendChild(ligneModule(u, m)));
+        t.appendChild(tb); wrap.appendChild(t); card.appendChild(wrap);
+      } else {
+        card.appendChild(el('p', 'note', 'Modules à ajouter depuis le schéma pédagogique du portail.'));
+      }
+      const add = el('button', 'btn small', '+ Ajouter un module');
+      add.type = 'button';
+      add.style.alignSelf = 'flex-start';
+      add.addEventListener('click', () => {
+        const m = mod('', 'S1', 2);
+        notes[u.k].push(m); sauver(); dessinerUEs(); majNotes();
+        const champ = document.getElementById(m.id + '-nom'); if (champ) champ.focus();
+      });
+      card.appendChild(add);
+      box.appendChild(card);
+    });
+  }
+
+  function ligneModule(u, m) {
+    const tr = el('tr');
+    const champ = (prop, type, cls, label) => {
+      const i = el('input', cls);
+      i.type = 'text'; i.id = `${m.id}-${prop}`; i.value = m[prop] ?? '';
+      if (type === 'num') { i.inputMode = 'decimal'; i.placeholder = '—'; }
+      i.setAttribute('aria-label', label + (m.nom ? ' – ' + m.nom : ''));
+      i.addEventListener('input', () => {
+        m[prop] = prop === 'ects' ? (i.value.trim() === '' ? '' : Number(i.value.replace(',', '.'))) : i.value;
+        if (prop === 'note' || prop === 'ratt') i.classList.toggle('invalid', Number.isNaN(lireNote(i.value)));
+        if (prop === 'ects') i.classList.toggle('invalid', !(Number(i.value.replace(',', '.')) >= 0));
+        sauver(); majNotes();
+      });
+      if ((prop === 'note' || prop === 'ratt') && Number.isNaN(lireNote(m[prop]))) i.classList.add('invalid');
+      const td = el('td'); td.appendChild(i); return td;
+    };
+    tr.appendChild(champ('nom', 'txt', '', 'Nom du module'));
+    const tdS = el('td');
+    const sel = el('select');
+    sel.id = m.id + '-sem';
+    sel.setAttribute('aria-label', 'Semestre');
+    ['S1', 'S2'].forEach(s => sel.add(new Option(s, s)));
+    sel.value = m.sem;
+    sel.addEventListener('change', () => { m.sem = sel.value; sauver(); majNotes(); });
+    tdS.appendChild(sel); tr.appendChild(tdS);
+    tr.appendChild(champ('ects', 'num', 'num', 'ECTS'));
+    tr.appendChild(champ('note', 'num', 'num', 'Note sur 20'));
+    tr.appendChild(champ('ratt', 'num', 'num', 'Note de rattrapage'));
+    const tdSt = el('td'); tr.appendChild(tdSt);
+    const tdD = el('td');
+    const del = el('button', 'del', '×');
+    del.type = 'button';
+    del.title = 'Supprimer ce module';
+    del.setAttribute('aria-label', 'Supprimer le module ' + (m.nom || ''));
+    del.addEventListener('click', () => {
+      notes[u.k] = notes[u.k].filter(x => x !== m); sauver(); dessinerUEs(); majNotes();
+    });
+    tdD.appendChild(del); tr.appendChild(tdD);
+    refs[u.k].rows[m.id] = tdSt;
+    return tr;
+  }
+
+  function majNotes() {
+    let acquis = 0, aRatt = 0, attente = 0, saisis = 0;
+    const sem = { S1: { acq: 0, tot: 0 }, S2: { acq: 0, tot: 0 } };
+    const aRattraper = [];
+    let toutesValidees = true;
+    UES.forEach(u => {
+      const r = evalUE(u);
+      const ref = refs[u.k];
+      acquis += r.acquis; aRatt += r.aRatt; attente += r.attente; saisis += r.ectsSaisis;
+      if (r.statut !== 'validee' && r.statut !== 'compensee') toutesValidees = false;
+      const ueValidee = r.statut === 'validee' || r.statut === 'compensee';
+      r.mods.forEach((m, i) => {
+        const s = sem[m.sem] || sem.S1, e = +m.ects || 0;
+        s.tot += e;
+        if (ueValidee || r.etats[i] === 'ok') s.acq += e;
+        if (r.etats[i] === 'ratt' || r.etats[i] === 'echec') aRattraper.push(`${m.nom || 'Module sans nom'} (${u.nom}, ${m.sem}) : ${fmtN(r.vals[i])}/20`);
+        if (r.vals[i] !== null) s.notees = true;
+        const cell = ref.rows[m.id];
+        if (cell) {
+          if (r.etats[i] === 'sans') { cell.replaceChildren(el('span', 'note', '—')); }
+          else cell.replaceChildren(pill(ETAT[r.etats[i]]));
+        }
+      });
+      ref.meta.textContent = `${fmtN(r.acquis)} / ${u.ects} ECTS` + (r.moy !== null ? ` · moy. ${fmtN(r.moy)}` : '');
+      ref.pill.replaceChildren(pill(PILL[r.statut]));
+      if (r.ectsSaisis > u.ects) { ref.warn.hidden = false; ref.warn.textContent = `Les modules saisis totalisent ${fmtN(r.ectsSaisis)} ECTS, alors que l'UE en compte ${u.ects}. Vérifiez les ECTS.`; }
+      else if (r.ectsSaisis < u.ects && r.mods.length) { ref.warn.hidden = false; ref.warn.style.color = 'var(--muted)'; ref.warn.textContent = `Encore ${fmtN(u.ects - r.ectsSaisis)} ECTS de modules à ajouter dans cette UE.`; }
+      else { ref.warn.hidden = true; ref.warn.style.color = ''; }
+    });
+
+    const nonSaisis = Math.max(0, 60 - saisis);
+    $('sc-acq').textContent = fmtN(acquis);
+    const parts = $('sc-track').children;
+    [acquis, aRatt, attente].forEach((v, i) => { parts[i].style.width = Math.min(100, v / 60 * 100) + '%'; });
+    $('sc-track').setAttribute('aria-label', `${fmtN(acquis)} ECTS acquis, ${fmtN(aRatt)} à rattraper, ${fmtN(attente)} sans note, ${fmtN(nonSaisis)} à saisir, sur 60.`);
+    $('lg-ok').textContent = `${fmtN(acquis)} acquis`;
+    $('lg-bad').textContent = `${fmtN(aRatt)} à rattraper`;
+    $('lg-wait').textContent = `${fmtN(attente)} sans note`;
+    $('lg-none').textContent = `${fmtN(nonSaisis)} à saisir`;
+
+    const auMoinsUneNote = UES.some(u => notes[u.k].some(m => retenue(m) !== null));
+    if (auMoinsUneNote) {
+      $('mini-ects').textContent = fmtN(acquis);
+      $('mini-label').textContent = 'ECTS acquis sur 60' + (aRattraper.length ? ` · ${aRattraper.length} à rattraper` : '');
+    } else {
+      $('mini-ects').textContent = '—';
+      $('mini-label').textContent = 'ECTS : saisir les notes →';
+    }
+    const v = $('sc-verdict');
+    if (toutesValidees && acquis >= 60) v.replaceChildren(pill(['ok', 'Année validée : 60 ECTS']));
+    else if (aRatt > 0) v.replaceChildren(pill(['bad', `${aRattraper.length} module${aRattraper.length > 1 ? 's' : ''} à rattraper`]));
+    else v.replaceChildren(pill(['wait', `Il reste ${fmtN(60 - acquis)} ECTS à obtenir`]));
+
+    const semBox = $('sc-sem');
+    semBox.replaceChildren();
+    ['S1', 'S2'].forEach(k => {
+      const s = sem[k];
+      if (!s.notees) return;
+      const ok = s.acq >= 20;
+      semBox.appendChild(pill([ok ? 'ok' : 'wait', `${k} : ${fmtN(s.acq)} ECTS validés · ` +
+        (ok ? 'rattrapage accessible' : `rattrapage possible à partir de 20 (encore ${fmtN(20 - s.acq)})`)]));
+    });
+
+    const todo = $('sc-todo');
+    todo.replaceChildren();
+    if (aRattraper.length) {
+      todo.appendChild(el('strong', null, 'À rattraper'));
+      const ul = el('ul', 'todo');
+      aRattraper.forEach(t => ul.appendChild(el('li', null, t)));
+      todo.appendChild(ul);
+    }
+  }
+
+  // Export / import / remise à zéro
+  const direNotes = t => { $('notes-status').textContent = t; setTimeout(() => { $('notes-status').textContent = ''; }, 4000); };
+  $('exp-btn').addEventListener('click', () => {
+    const data = { format: 'memo-bic-a1-notes', version: 1, exporte: new Date().toISOString(), notes: sauver() };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = el('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'notes-bic-a1-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    direNotes('Fichier exporté.');
+  });
+  $('imp-file').addEventListener('change', async () => {
+    const f = $('imp-file').files[0];
+    if (!f) return;
+    try {
+      const d = JSON.parse(await f.text());
+      const n = d && d.notes ? d.notes : d;
+      if (!valideNotes(n)) throw new Error('format');
+      Object.values(n).flat().forEach(m => { m.id = 'm' + (++uid); m.note = m.note ?? ''; m.ratt = m.ratt ?? ''; });
+      notes = n; sauver(); dessinerUEs(); majNotes();
+      direNotes('Notes importées.');
+    } catch (e) {
+      direNotes('Ce fichier ne contient pas de notes exportées depuis cette page.');
+    }
+    $('imp-file').value = '';
+  });
+  let confirmReset = false, resetTimer = null;
+  $('reset-btn').addEventListener('click', () => {
+    if (!confirmReset) {
+      confirmReset = true; $('reset-btn').textContent = 'Confirmer : tout effacer ?';
+      resetTimer = setTimeout(() => { confirmReset = false; $('reset-btn').textContent = 'Tout effacer'; }, 4000);
+      return;
+    }
+    clearTimeout(resetTimer); confirmReset = false; $('reset-btn').textContent = 'Tout effacer';
+    notes = notesParDefaut(); sauver(); dessinerUEs(); majNotes();
+    direNotes('Notes effacées.');
+  });
+
+  dessinerUEs();
+  majNotes();
+</script>
+</body>
+</html>
